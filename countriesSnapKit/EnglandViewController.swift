@@ -6,24 +6,47 @@
 //
 
 import UIKit
-
+import SnapKit
 class EnglandViewController: UIViewController {
 
+    private var englandView: england = {
+        england()
+    }()
+   
+    private lazy var teleportButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Teleport to next flag", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        button.addTarget(self, action: #selector(teleportToNextFlag), for: .touchUpInside)
+        
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .white
+        setupSubViews()
+        
     }
+    private func setupSubViews(){
+        view.addSubview(englandView)
+        englandView.snp.makeConstraints({make in
+            make.center.equalTo(view.safeAreaLayoutGuide.snp.center)
+            
+        })
+        
+        view.addSubview(teleportButton)
+        teleportButton.snp.makeConstraints({make in
+            make.center.equalTo(view.safeAreaLayoutGuide.snp.center)
+    })
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+    @objc func teleportToNextFlag(){
+        let mexico = MexicoViewController()
+        navigationController?.pushViewController(mexico, animated: true)
+    }
+                                           
+        }

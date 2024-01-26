@@ -31,20 +31,21 @@ class ViewController: UIViewController {
         setupSubViews()
         // Do any additional setup after loading the view.
     }
+   
 
     private func setupSubViews(){
         view.addSubview(chinaView)
         view.addSubview(teleportButton)
         teleportButton.snp.makeConstraints({make in
             make.center.equalTo(view.safeAreaLayoutGuide.snp.center)
-
+            
         })
         
     }
 
     @objc func teleportToNextFlag(){
         let englang = EnglandViewController()
-        englang.navigationController?.pushViewController(englang, animated: true)
+        navigationController?.pushViewController(englang, animated: true)
     }
 }
 
